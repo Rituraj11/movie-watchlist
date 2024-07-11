@@ -1,0 +1,15 @@
+.ant-layout-sider-children{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #fff;
+}
+
+.ant-dropdown-menu-item{
+    background-color: #fff!Important;
+}
+
+.ant-menu-item-selected{
+    color: #9e2e32!Important;
+    background-color: #ffe8e8!Important;
+}
