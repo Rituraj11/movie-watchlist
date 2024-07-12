@@ -1,32 +1,46 @@
 import { Layout as AntLayout, Menu, Row, Typography, Input, Col, Image, Dropdown, Button } from 'antd';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { EllipsisOutlined } from '@ant-design/icons';
 import userIcon from '../assets/imgs/user_icon.png';
+import PopModal from '../components/PopModal';
+import { setIsModalOpen, setModalFormName } from '../redux/slice/authSlice';
 
 const { Sider, Content } = AntLayout;
 const { Title } = Typography;
 const { Search } = Input;
 
-const items = [
-    {
-      key: '1',
-      label: (
-        <Button type="text" className='bg-white'>
-            Register
-        </Button>
-      ),
-    },
-    {
-      key: '2',
-      label: (
-        <Button type="text" className='bg-white'>
-            Login
-        </Button>
-      ),
-    },
-];
 
 const Layout = ({ children }) => {
+    const dispatch = useDispatch();
+
+    const items = [
+        {
+          key: '1',
+          label: (
+            <Button 
+                type="text" 
+                className='bg-white' 
+                onClick={() => { dispatch(setModalFormName('Register')); dispatch(setIsModalOpen(true))}}
+            >
+                Register
+            </Button>
+          ),
+        },
+        {
+          key: '2',
+          label: (
+            <Button 
+                type="text" 
+                className='bg-white' 
+                onClick={() => { dispatch(setModalFormName('Login')); dispatch(setIsModalOpen(true))}}
+            >
+                Login
+            </Button>
+          ),
+        },
+    ];
+
     return(
         <AntLayout className=' min-h-screen h-auto'>
             <Sider width={'25%'} className='!bg-white h-screen py-4 px-2' >
@@ -66,6 +80,7 @@ const Layout = ({ children }) => {
                     {children}
                 </Content>
             </AntLayout>
+            <PopModal />
         </AntLayout>
     )
 }
