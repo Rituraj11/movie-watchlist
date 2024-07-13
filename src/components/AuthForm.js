@@ -1,9 +1,39 @@
+import { useDispatch } from 'react-redux';
 import { Button, Form, Input } from 'antd';
+import { addUser, getUserByEmail } from '../db/idb';
+import { setLoading, setUser, setAuthError, setIsModalOpen } from '../redux/slice/authSlice';
 
 const AuthForm = ({ formName }) => {
+    const dispatch = useDispatch();
 
-    const onFinish = (values) => {
-        console.log('Success:', values);
+    const onFinish = async (values) => {
+        dispatch(setLoading(true));
+
+        if(values && values.email){
+            const userData = await getUserByEmail(values?.email);
+            if(formName === 'Register'){
+            
+                if(userData){
+                    dispatch(setAuthError('User already exists'));
+                    dispatch(setLoading(false));
+                    // dispatch(setIsModalOpen(false))
+                }else{
+                    await addUser(values);
+                    dispatch(setUser(values));
+                    dispatch(setLoading(false));
+                    dispatch(setIsModalOpen(false))
+                }
+            }else{
+                if(userData){
+                    dispatch(setUser(userData));
+                    dispatch(setLoading(false));
+                    dispatch(setIsModalOpen(false))
+                }else{
+                    dispatch(setAuthError('User doesnot exists'));
+                    dispatch(setLoading(false));
+                }
+            }
+        }
     };
 
     return(

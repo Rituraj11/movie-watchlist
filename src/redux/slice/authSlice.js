@@ -21,9 +21,15 @@ export const authSlice = createSlice({
         setModalFormName: (state, action) => {
             state.modalFormName = action.payload;
         },
+        setUser: (state, action) => {
+            state.user = action.payload;
+        },
+        setAuthError: (state, action) => {
+            state.error = action.payload;
+        },
     }
 });
 
-export const { setLoading, setIsModalOpen, setModalFormName } = authSlice.actions;
+export const { setLoading, setIsModalOpen, setModalFormName, setUser, setAuthError } = authSlice.actions;
 
 export default authSlice.reducer;
