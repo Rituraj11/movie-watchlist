@@ -1,11 +1,31 @@
-import { Row, Typography, Input, Card } from "antd";
-
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Row, Typography, Input, Spin } from "antd";
+import { searchMovies, setSearchResults, setSearchTerm } from "../../redux/slice/searchSlice";
+import SearchResultCard from "../../components/Home/SearchResultCard";
 
 const { Title } = Typography;
 const { Search } = Input;
-const { Meta } = Card;
 
 const Home = () => {
+    const dispatch = useDispatch();
+
+    const loading = useSelector(state => state?.search?.loading);
+    const searchResults = useSelector(state => state?.search?.searchResults);
+    const searchTerm = useSelector(state => state?.search?.searchTerm);
+
+    useEffect(()=>{
+        dispatch(searchMovies(searchTerm));
+
+        return () => {
+            dispatch(setSearchResults(null))
+        }
+    },[searchTerm]);
+
+    const handleSearch = (value) => {
+        dispatch(setSearchTerm(value === '' ? null : value))
+    }
+
     return(
         <Row className="w-full flex flex-col gap-y-5">
             <Row className="w-full p-5 flex flex-col outline outline-1 outline-red-700 rounded-md">
@@ -20,28 +40,28 @@ const Home = () => {
                 </Title>
             </Row>
 
-            <Row className="w-full flex flex-col gap-y-4">
+            <Row className="w-full flex flex-col gap-y-5">
                 <Row className="w-full">
                     <Search
                         placeholder="Search movies..."
                         allowClear
                         enterButton="Search"
                         size="large"
-                        // onSearch={onSearch}
+                        onSearch={handleSearch}
                     />
                 </Row>
-                <Row className="w-full gap-4">
-                    <Card
-                        hoverable
-                        style={{
-                            width: 150,
-                        }}
-                        cover={
-                            <img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />
-                        }
+                <Row 
+                    className="w-full gap-6"
+                    style={{ justifyContent: loading ? 'center' : 'flex-start'}}
                     >
-                        <Meta className="movie-card-content" title="Europe Street beat" description="www.instagram.com" />
-                    </Card>
+                    {
+                        !loading && searchResults && searchResults.length > 0 ?
+                        searchResults.map(item => {
+                            return (<SearchResultCard item={item} />)
+                        })
+                        :
+                            ( <Spin size="large" tip="Loading"  />)
+                    }
                 </Row>
             </Row>
         </Row>

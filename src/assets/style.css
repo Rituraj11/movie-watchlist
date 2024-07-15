@@ -15,15 +15,20 @@
 }
 
 .ant-card-body{
-    padding: 16px;
+    padding: 16px!important;
 }
 
 .movie-card-content .ant-card-meta-detail .ant-card-meta-title{
     /* overflow: auto; */
-    white-space: normal;
+    /* white-space: normal; */
     font-size: 14px;
 }
 
 .movie-card-content .ant-card-meta-detail .ant-card-meta-description{
     font-size: 12px;
+}
+
+.ant-card .ant-card-cover img{
+    max-height: 230px;
+    height: auto;
 }
