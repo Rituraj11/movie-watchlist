@@ -111,7 +111,7 @@ const Layout = ({ children }) => {
                 {/* <Header className="site-layout-background" style={{ padding: 0 }}>
                     Header
                 </Header> */}
-                <Content className="min-w-screen p-6">
+                <Content className="min-w-screen h-auto p-6">
                     {children}
                 </Content>
             </AntLayout>
