@@ -78,7 +78,7 @@ const Layout = ({ children }) => {
     return(
         <AntLayout className=' min-h-screen h-auto'>
             {contextHolder}
-            <Sider width={'25%'} className='!bg-white h-screen py-4 px-2' >
+            <Sider width={'25%'} className='!bg-white min-h-screen h-auto py-4 px-2' >
                 <Row className='w-full bg-white justify-center'>
                     <Row className='bg-white'>
                         <Title level={2} className='!text-red-500'>Watchlists</Title>
@@ -107,7 +107,7 @@ const Layout = ({ children }) => {
                     </Col>
                 </Row>
             </Sider>
-            <AntLayout style={{ padding: '0 24px 24px' }}>
+            <AntLayout style={{ padding: '24px 24px' }}>
                 {/* <Header className="site-layout-background" style={{ padding: 0 }}>
                     Header
                 </Header> */}
