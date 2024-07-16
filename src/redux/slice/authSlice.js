@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getItem } from "../../utils/localStorageControl";
 
 export const initialState = {
     isModalOpen: false,
     modalFormName: 'Login',
-    user: null,
+    user: getItem('user') || null,
     loading: false,
     error: null
 }

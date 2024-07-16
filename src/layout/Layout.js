@@ -2,11 +2,13 @@
 import { useEffect } from 'react';
 import { Layout as AntLayout, Menu, Row, Typography, Input, Col, Image, Dropdown, Button, message } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { EllipsisOutlined } from '@ant-design/icons';
 import userIcon from '../assets/imgs/user_icon.png';
 import PopModal from '../components/PopModal';
 import { setIsModalOpen, setModalFormName, setAuthError, setUser } from '../redux/slice/authSlice';
+import { removeItem } from '../utils/localStorageControl';
 
 const { Sider, Content } = AntLayout;
 const { Title } = Typography;
@@ -15,6 +17,7 @@ const { Search } = Input;
 
 const Layout = ({ children }) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const error = useSelector(state => state.auth.error);
     const user = useSelector(state => state.auth.user);
     const [messageApi, contextHolder] = message.useMessage()
@@ -50,10 +53,14 @@ const Layout = ({ children }) => {
             key: '3',
             label: (
               <Button 
-                  type="text" 
-                  style={{ display: user ? 'block' : 'none'}}
-                  className='bg-white' 
-                  onClick={() => dispatch(setUser(null))}
+                    type="text" 
+                    style={{ display: user ? 'block' : 'none'}}
+                    className='bg-white' 
+                    onClick={() => {
+                        dispatch(setUser(null)); 
+                        removeItem('user') ;
+                        navigate('/')
+                    }}
               >
                   Logout
               </Button>
