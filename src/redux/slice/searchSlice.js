@@ -30,7 +30,7 @@ export const searchMovies = createAsyncThunk('search/searchMovies', async (searc
 export const viewDetails = createAsyncThunk('search/viewDetails', async (imdbId, { rejectWithValue }) => {
     try {
         const result = await axios({
-            url: `${CONSTANT.MOVIE_API_ENDPOINT}/?apikey=${CONSTANT.MOVIE_API_KEY}&r=json&i=${imdbId}12&plot=full`,
+            url: `${CONSTANT.MOVIE_API_ENDPOINT}/?apikey=${CONSTANT.MOVIE_API_KEY}&r=json&i=${imdbId}&plot=full`,
         });
 
         if(result?.data?.Response === 'False'){

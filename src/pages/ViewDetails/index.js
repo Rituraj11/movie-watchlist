@@ -51,49 +51,49 @@ const ViewDetails = () => {
                                     <Title level={5}>
                                         Title: {selectedViewDetails?.Title}
                                     </Title>
-                                    <Paragraph className="mb-0">
+                                    <Paragraph className="!mb-0">
                                         Year: {selectedViewDetails?.Year}
                                     </Paragraph>
-                                    <Paragraph className="mb-0">
+                                    <Paragraph className="!mb-0">
                                         Rated: {selectedViewDetails?.Rated}
                                     </Paragraph>
-                                    <Paragraph className="mb-0">
+                                    <Paragraph className="!mb-0">
                                         Released: {selectedViewDetails?.Released}
                                     </Paragraph>
-                                    <Paragraph className="mb-0">
+                                    <Paragraph className="!mb-0">
                                         Runtime: {selectedViewDetails?.Runtime}
                                     </Paragraph>
-                                    <Paragraph className="mb-0">
+                                    <Paragraph className="!mb-0">
                                         Genre: {selectedViewDetails?.Genre}
                                     </Paragraph>
-                                    <Paragraph className="mb-0">
+                                    <Paragraph className="!mb-0">
                                         Director: {selectedViewDetails?.Director}
                                     </Paragraph>
-                                    <Paragraph className="mb-0">
+                                    <Paragraph className="!mb-0">
                                         Writer: {selectedViewDetails?.Writer}
                                     </Paragraph>
-                                    <Paragraph className="mb-0">
+                                    <Paragraph className="!mb-0">
                                         Actors: {selectedViewDetails?.Actors}
                                     </Paragraph>
-                                    <Paragraph className="mb-0">
+                                    <Paragraph className="!mb-0">
                                         Language: {selectedViewDetails?.Language}
                                     </Paragraph>
-                                    <Paragraph className="mb-0">
+                                    <Paragraph className="!mb-0">
                                         Country: {selectedViewDetails?.Country}
                                     </Paragraph>
-                                    <Paragraph className="mb-0">
+                                    <Paragraph className="!mb-0">
                                         ImdbRating: {selectedViewDetails?.imdbRating}
                                     </Paragraph>
-                                    <Paragraph className="mb-0">
+                                    <Paragraph className="!mb-0">
                                         ImdbVotes : {selectedViewDetails?.imdbVotes} 
                                     </Paragraph>
                                 </Col>
                             </Row>
                             <Row className="w-full">
-                                <Paragraph className="mb-0">
+                                <Paragraph className="!mb-0">
                                     Plot : {selectedViewDetails?.Plot} 
                                 </Paragraph>
-                                <Paragraph className="mb-0">
+                                <Paragraph className="!mb-0">
                                     Awards : {selectedViewDetails?.Awards} 
                                 </Paragraph>
 
