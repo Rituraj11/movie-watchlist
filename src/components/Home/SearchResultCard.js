@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { Card } from "antd";
 import { updateUser } from "../../db/idb";
 import bookMark from '../../assets/imgs/bookmark.png';
@@ -10,6 +11,7 @@ const { Meta } = Card;
 
 const SearchResultCard = ({ item = {} }) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [ isBookmarked, setIsBookmarked ] = useState(false);
     const user = useSelector(state => state.auth.user);
@@ -78,7 +80,7 @@ const SearchResultCard = ({ item = {} }) => {
                 className="movie-card-content" 
                 title={item?.Title} 
                 style={{ zIndex: 1}}
-                onClick={() => console.log('------------Movie card clicked------------')}
+                onClick={() => navigate(`/view/${item?.imdbID}`)}
                 description={`${item?.Type} ${item?.Year}`} />
         </Card>
     )
