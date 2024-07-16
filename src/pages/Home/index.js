@@ -57,10 +57,19 @@ const Home = () => {
                     style={{ justifyContent: loading ? 'center' : 'flex-start'}}
                     >
                     {
-                        !loading && searchResults && searchResults.length > 0 ?
-                        searchResults.map(item => {
-                            return (<SearchResultCard key={item?.imdbID} item={item} />)
-                        })
+                        !loading ?
+                            searchResults && searchResults.length > 0 ?
+                            searchResults.map(item => {
+                                return (<SearchResultCard key={item?.imdbID} item={item} />)
+                            })
+                            :
+                                (<>
+                                    <Row className="w-full min-h-full h-auto flex justify-center">
+                                        <Title level={4}>
+                                            Movies Not Found!
+                                        </Title>
+                                    </Row> 
+                                </>)
                         :
                             ( <Spin size="large" tip="Loading"  />)
                     }

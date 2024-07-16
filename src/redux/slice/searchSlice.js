@@ -16,8 +16,8 @@ export const searchMovies = createAsyncThunk('search/searchMovies', async (searc
             url: `${CONSTANT.MOVIE_API_ENDPOINT}/?apikey=${CONSTANT.MOVIE_API_KEY}&r=json&s=${searchterm || 'Chris'}`,
         });
 
-        if(result?.data?.Response){
-            rejectWithValue(result?.data?.error)
+        if(result?.data?.Response === 'False'){
+            return rejectWithValue(result?.data?.Error)
         }
 
         return result?.data?.Search;
