@@ -18,8 +18,8 @@ const AuthForm = ({ formName }) => {
                     dispatch(setLoading(false));
                     // dispatch(setIsModalOpen(false))
                 }else{
-                    await addUser(values);
-                    dispatch(setUser(values));
+                    await addUser({...values, myWatchList: [] });
+                    dispatch(setUser({...values, myWatchList: [] }));
                     dispatch(setLoading(false));
                     dispatch(setIsModalOpen(false))
                 }

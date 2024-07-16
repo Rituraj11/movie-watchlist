@@ -1,10 +1,55 @@
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Card } from "antd";
+import { updateUser } from "../../db/idb";
 import bookMark from '../../assets/imgs/bookmark.png';
 import bookMarked from '../../assets/imgs/bookmarked.png';
+import { setUser } from "../../redux/slice/authSlice";
 
 const { Meta } = Card;
 
 const SearchResultCard = ({ item = {} }) => {
+    const dispatch = useDispatch();
+
+    const [ isBookmarked, setIsBookmarked ] = useState(false);
+    const user = useSelector(state => state.auth.user);
+
+    useEffect(() => { 
+        if(user && user?.myWatchList.length > 0 && user?.myWatchList.some(obj => obj?.imdbID === item?.imdbID)){
+            setIsBookmarked(true);
+        }else{
+            setIsBookmarked(false);
+        }
+
+        return () => {
+            setIsBookmarked(false);
+        }
+    },[user, item])
+
+    const handleBookmark = async() => {
+        if(user){
+            if(isBookmarked){
+                const updatedList = user?.myWatchList.filter(obj => obj.imdbID !== item?.imdbID);
+
+                const updatedUser = {
+                    ...user,
+                    myWatchList: updatedList,
+                };
+
+                dispatch(setUser(updatedUser))
+                await updateUser(updatedUser);
+
+            }else{
+                const updatedUser = {
+                    ...user,
+                    myWatchList: [...user.myWatchList, item],
+                };
+                dispatch(setUser(updatedUser))
+                await updateUser(updatedUser);
+            }
+        }
+    }
+
     return(
         <Card
             hoverable
@@ -16,8 +61,8 @@ const SearchResultCard = ({ item = {} }) => {
                 <>
                     <img 
                         alt='Bookmark' 
-                        src={bookMark} 
-                        onClick={() => console.log('------------Bookmark clicked------------')}
+                        src={isBookmarked ? bookMarked : bookMark} 
+                        onClick={() => handleBookmark(item?.imdbID)}
                         style={{ 
                             width: '25px', 
                             position: 'absolute', 

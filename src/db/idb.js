@@ -28,3 +28,9 @@ export const getAllUsers = async () => {
   const db = await initDB();
   return await db.getAll(STORE_NAME);
 };
+
+export const updateUser = async (user) => {
+  const db = await initDB();
+  console.log('-----in db-----', user)
+  await db.put(STORE_NAME, user);
+};

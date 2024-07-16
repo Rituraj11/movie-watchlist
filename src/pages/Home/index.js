@@ -57,7 +57,7 @@ const Home = () => {
                     {
                         !loading && searchResults && searchResults.length > 0 ?
                         searchResults.map(item => {
-                            return (<SearchResultCard item={item} />)
+                            return (<SearchResultCard key={item?.imdbID} item={item} />)
                         })
                         :
                             ( <Spin size="large" tip="Loading"  />)
