@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Row, Typography, Input, Spin } from "antd";
 import { searchMovies, setSearchResults, setSearchTerm } from "../../redux/slice/searchSlice";
 import SearchResultCard from "../../components/Home/SearchResultCard";
+import bookMark from '../../assets/imgs/bookmark.png';
+import bookMarked from '../../assets/imgs/bookmarked.png';
 
-const { Title } = Typography;
+const { Title, Paragraph } = Typography;
 const { Search } = Input;
 
 const Home = () => {
@@ -32,12 +34,12 @@ const Home = () => {
                 <Title level={2} className="mb-4">
                     Welcome to <span className='text-red-500'>Watchlists</span>
                 </Title>
-                <Title level={5} className="!mt-0">
+                <Paragraph className="!mt-0  font-medium flex">
                     Browse movies, add them to watchlists and share with friends.
-                </Title>
-                <Title level={5} className="!mt-0">
-                    Just click the + to add movie, the poster to see more details and mark the movie as watched.
-                </Title>
+                </Paragraph>
+                <Paragraph className="!mt-0  font-medium flex">
+                    Just click the <img className="mx-1" src={bookMark} alt="bookmark" style={{ width: '20px', height: '20px' }} /> to add and  <img className="mx-1" src={bookMarked} alt="bookmarked" style={{ width: '20px', height: '20px' }} /> to remove movie in MyList, the poster to see more details and mark the movie as watched.
+                </Paragraph>
             </Row>
 
             <Row className="w-full flex flex-col gap-y-5">
