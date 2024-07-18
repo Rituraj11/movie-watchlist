@@ -61,6 +61,22 @@
     display: none!important;
 }
 
+.ant-btn-primary{
+    background-color: #ef4444;
+}
+.ant-btn-primary:hover{
+    background-color: #f07e7e!important;
+}
+
+.ant-input-outlined:hover {
+    border-color: #f07e7e!important;
+}
+
+.ant-input-search-button:hover{
+    color: #ef4444!important;
+    border-color: #ef4444!important;
+}
+
 
 @media screen and (max-width: 599px) {
     .sidenav{
