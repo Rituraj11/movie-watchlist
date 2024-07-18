@@ -9,6 +9,7 @@ import userIcon from '../assets/imgs/user_icon.png';
 import PopModal from '../components/PopModal';
 import { setIsModalOpen, setModalFormName, setAuthError, setUser } from '../redux/slice/authSlice';
 import { removeItem } from '../utils/localStorageControl';
+import { setSearchTerm } from '../redux/slice/searchSlice';
 
 const { Sider, Content, Header } = AntLayout;
 const { Title } = Typography;
@@ -104,6 +105,13 @@ const Layout = ({ children }) => {
         }
     }
 
+    const handleSearch = (value) => {
+        dispatch(setSearchTerm(value === '' ? null : value))
+        if(window.innerWidth < 599){
+            closeNav()
+        }
+    }
+
     return(
         <AntLayout className=' min-h-screen h-auto'>
             {contextHolder}
@@ -122,7 +130,7 @@ const Layout = ({ children }) => {
 
                     <Menu mode="inline" defaultSelectedKeys={['1']} className='h-full'>
                         <Row className='bg-white justify-center px-1 py-3 mb-4'>
-                            <Search placeholder="Search" />
+                            <Search placeholder="Search" onSearch={handleSearch}/>
                         </Row>
                         <Menu.Item key="1">
                             <Link to="/" onClick={handleMenuClick}>Home</Link>
