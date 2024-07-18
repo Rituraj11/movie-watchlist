@@ -32,3 +32,38 @@
     max-height: 230px;
     height: auto;
 }
+
+#sideNav{
+    z-index: 2;
+}
+
+#main{
+    z-index: 1;
+}
+
+.sideNav-active{
+    display: flex!important;
+    flex: 1!important;
+    width: 100%!important;
+    max-width: none!important;
+    min-width: 0!important;
+}
+
+.sideNav-inactive{
+    display: none!important;
+}
+
+.main-active{
+    display: flex!important;
+}
+
+.main-inactive{
+    display: none!important;
+}
+
+
+@media screen and (max-width: 599px) {
+    .sidenav{
+        display: none;
+    }
+}

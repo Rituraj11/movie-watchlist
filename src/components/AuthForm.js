@@ -84,7 +84,7 @@ const AuthForm = ({ formName }) => {
                 <Input placeholder='Email' />
             </Form.Item>
 
-            <Form.Item>
+            <Form.Item className='flex justify-end'>
                 <Button type="primary" htmlType="submit">
                     {formName}
                 </Button>

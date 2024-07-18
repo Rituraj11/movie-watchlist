@@ -4,13 +4,13 @@ import { Layout as AntLayout, Menu, Row, Typography, Input, Col, Image, Dropdown
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { EllipsisOutlined } from '@ant-design/icons';
+import { EllipsisOutlined, MenuUnfoldOutlined, ArrowLeftOutlined } from '@ant-design/icons';
 import userIcon from '../assets/imgs/user_icon.png';
 import PopModal from '../components/PopModal';
 import { setIsModalOpen, setModalFormName, setAuthError, setUser } from '../redux/slice/authSlice';
 import { removeItem } from '../utils/localStorageControl';
 
-const { Sider, Content } = AntLayout;
+const { Sider, Content, Header } = AntLayout;
 const { Title } = Typography;
 const { Search } = Input;
 
@@ -82,24 +82,53 @@ const Layout = ({ children }) => {
         }
     },[error]);
 
+    const openNav = () => {
+        document.getElementById("sideNav").classList.remove('sideNav-inactive');
+        document.getElementById("sideNav").classList.add('sideNav-active');
+
+        document.getElementById("main-layout").classList.remove('main-active');
+        document.getElementById("main-layout").classList.add('main-inactive');
+    }
+
+    const closeNav = () => {
+        document.getElementById("sideNav").classList.remove('sideNav-active');
+        document.getElementById("sideNav").classList.add('sideNav-inactive');
+
+        document.getElementById("main-layout").classList.remove('main-inactive');
+        document.getElementById("main-layout").classList.add('main-active');
+    }
+
+    const handleMenuClick = () => {
+        if(window.innerWidth < 599){
+            closeNav()
+        }
+    }
+
     return(
         <AntLayout className=' min-h-screen h-auto'>
             {contextHolder}
-            <Sider width={'25%'} className='!bg-white min-h-screen h-auto py-4 px-2' >
-                <Row className='w-full bg-white justify-center'>
-                    <Row className='bg-white'>
-                        <Title level={2} className='!text-red-500'>Watchlists</Title>
+            <Sider id="sideNav" width={'25%'} className='sidenav !bg-white min-h-screen h-auto py-4 px-2' >
+                <Row className='w-full bg-white justify-start'>
+                    <Row className='w-full flex justify-between px-3'>
+
+                        <Row className='bg-white'>
+                            <Title level={2} className='!text-red-500'>Watchlists</Title>
+                        </Row>
+                        <Row className='flex sm:hidden' onClick={() => closeNav()}>
+                            <ArrowLeftOutlined className='text-xl' />
+                        </Row>
                     </Row>
+
 
                     <Menu mode="inline" defaultSelectedKeys={['1']} className='h-full'>
                         <Row className='bg-white justify-center px-1 py-3 mb-4'>
                             <Search placeholder="Search" />
                         </Row>
                         <Menu.Item key="1">
-                            <Link to="/">Home</Link>
+                            <Link to="/" onClick={handleMenuClick}>Home</Link>
                         </Menu.Item>
                         <Menu.Item key="2">
-                            <Link to="/mylist">MyList</Link>
+                            <Link to="/mylist" onClick={handleMenuClick}>MyList</Link>
                         </Menu.Item>
                     </Menu>
                 </Row>
@@ -109,16 +138,32 @@ const Layout = ({ children }) => {
                     <Col span={16}><Title level={5}>{user ? `${user?.username}` : 'Guest'}</Title></Col>
                     <Col span={4} className='flex justify-end'>
                         <Dropdown menu={{ items }}>
-                            <EllipsisOutlined />
+                            <EllipsisOutlined className='text-xl'  />
                         </Dropdown>
                     </Col>
                 </Row>
             </Sider>
-            <AntLayout style={{ padding: '24px 24px' }}>
-                {/* <Header className="site-layout-background" style={{ padding: 0 }}>
-                    Header
-                </Header> */}
-                <Content className="min-w-screen h-auto p-6">
+            <AntLayout id='main-layout' className='p-3 sm:p-6'>
+                <Header
+                    id='header'
+                    className='flex sm:hidden'
+                    style={{
+                        padding: 0,
+                        background: 'transparent',
+                        height: 35,
+                        lineHeight: 0
+                    }}
+                    >
+                    <Button
+                        type="text"
+                        icon={<MenuUnfoldOutlined /> }
+                        onClick={() => openNav()}
+                        style={{
+                            width: 64,
+                        }}
+                    />
+                </Header>
+                <Content id='main' className="min-w-screen h-auto p-3 sm:p-6">
                     {children}
                 </Content>
             </AntLayout>

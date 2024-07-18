@@ -20,7 +20,7 @@ const PopModal = () => {
     return(
         <Modal 
             title={`${modalFormName} Form`}
-            className='!w-5/12' 
+            className='w-11/12 sm:!w-5/12' 
             open={isModalOpen} 
             onOk={handleOk} 
             onCancel={handleCancel} 

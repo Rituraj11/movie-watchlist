@@ -31,14 +31,14 @@ const Home = () => {
     return(
         <Row className="w-full flex flex-col gap-y-5">
             <Row className="w-full p-5 flex flex-col outline outline-1 outline-red-700 rounded-md">
-                <Title level={2} className="mb-4">
+                <Title level={2} className="mb-4 !text-2xl sm:text-3xl">
                     Welcome to <span className='text-red-500'>Watchlists</span>
                 </Title>
                 <Paragraph className="!mt-0  font-medium flex">
                     Browse movies, add them to watchlists and share with friends.
                 </Paragraph>
                 <Paragraph className="!mt-0  font-medium flex">
-                    Just click the <img className="mx-1" src={bookMark} alt="bookmark" style={{ width: '20px', height: '20px' }} /> to add and  <img className="mx-1" src={bookMarked} alt="bookmarked" style={{ width: '20px', height: '20px' }} /> to remove movie in MyList, the poster to see more details and mark the movie as watched.
+                    Just click the + to add and ✔ to remove movie in MyList, the poster to see more details and mark the movie as watched.
                 </Paragraph>
             </Row>
 
