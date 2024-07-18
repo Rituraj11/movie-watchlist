@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Row, Typography, Input, Spin } from "antd";
 import { searchMovies, setSearchResults, setSearchTerm } from "../../redux/slice/searchSlice";
 import SearchResultCard from "../../components/Home/SearchResultCard";
-import bookMark from '../../assets/imgs/bookmark.png';
-import bookMarked from '../../assets/imgs/bookmarked.png';
+// import bookMark from '../../assets/imgs/bookmark.png';
+// import bookMarked from '../../assets/imgs/bookmarked.png';
 
 const { Title, Paragraph } = Typography;
 const { Search } = Input;
@@ -22,7 +22,7 @@ const Home = () => {
         return () => {
             dispatch(setSearchResults(null))
         }
-    },[searchTerm]);
+    },[searchTerm, dispatch]);
 
     const handleSearch = (value) => {
         dispatch(setSearchTerm(value === '' ? null : value))

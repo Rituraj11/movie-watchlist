@@ -23,7 +23,7 @@ const ViewDetails = () => {
         return () => {
             dispatch(setSelectedViewDetails(null))
         }
-    },[params?.id]);
+    },[params?.id, dispatch]);
 
     console.log(selectedViewDetails)
 
