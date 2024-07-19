@@ -54,7 +54,7 @@ const Home = () => {
                 </Row>
                 <Row 
                     className="w-full gap-6"
-                    style={{ justifyContent: loading ? 'center' : 'flex-start'}}
+                    style={{ justifyContent: loading ? 'center' : 'flex-evenly'}}
                     >
                     {
                         !loading ?
