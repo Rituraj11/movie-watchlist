@@ -53,7 +53,7 @@ const Home = () => {
                     />
                 </Row>
                 <Row 
-                    className="w-full gap-6"
+                    className="w-full gap-6 px-0 sm:px-3"
                     style={{ justifyContent: loading ? 'center' : 'flex-evenly'}}
                     >
                     {

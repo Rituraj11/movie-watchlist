@@ -18,7 +18,7 @@ const MyList = () => {
 
             {
                 user ?
-                    <Row className="w-full gap-6">
+                    <Row className="w-full gap-6 px-0 sm:px-3 flex justify-evenly">
                     {
                         user?.myWatchList.length > 0 ?
                             user?.myWatchList.map(item => {
