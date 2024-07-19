@@ -69,7 +69,8 @@ const SearchResultCard = ({ item = {} }) => {
                             width: '25px', 
                             position: 'absolute', 
                             marginTop: '4px',
-                            zIndex: 3
+                            zIndex: 3,
+                            cursor: 'pointer'
                         }}
                     />
                     <img alt={item?.Title} src={item?.Poster} />

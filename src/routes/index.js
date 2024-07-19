@@ -9,10 +9,10 @@ const FrontRoutes = () => {
     return(
         <Routes>
             <Route index path="/" element={<Home />} />
+            <Route index path="/view/:id" element={<ViewDetails />} />
 
             <Route element={<ProtectedRoutes />}>
                 <Route index path="/mylist" element={<MyList />} />
-                <Route index path="/view/:id" element={<ViewDetails />} />
             </Route>
         </Routes>
     )
