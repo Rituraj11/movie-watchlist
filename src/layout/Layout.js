@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Layout as AntLayout, Menu, Row, Typography, Input, Col, Image, Dropdown, Button, message } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -19,6 +19,10 @@ const { Search } = Input;
 const Layout = ({ children }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const sideNavRef = useRef(null);
+    const mainLayoutRef = useRef(null);
+
     const error = useSelector(state => state.auth.error);
     const user = useSelector(state => state.auth.user);
     const [messageApi, contextHolder] = message.useMessage()
@@ -84,19 +88,23 @@ const Layout = ({ children }) => {
     },[error]);
 
     const openNav = () => {
-        document.getElementById("sideNav").classList.remove('sideNav-inactive');
-        document.getElementById("sideNav").classList.add('sideNav-active');
-
-        document.getElementById("main-layout").classList.remove('main-active');
-        document.getElementById("main-layout").classList.add('main-inactive');
+        if(sideNavRef && mainLayoutRef){
+            sideNavRef.current.classList.remove('sideNav-inactive');
+            sideNavRef.current.classList.add('sideNav-active');
+    
+            mainLayoutRef.current.classList.remove('main-active');
+            mainLayoutRef.current.classList.add('main-inactive');
+        }
     }
 
     const closeNav = () => {
-        document.getElementById("sideNav").classList.remove('sideNav-active');
-        document.getElementById("sideNav").classList.add('sideNav-inactive');
-
-        document.getElementById("main-layout").classList.remove('main-inactive');
-        document.getElementById("main-layout").classList.add('main-active');
+        if(sideNavRef && mainLayoutRef){
+            sideNavRef.current.classList.remove('sideNav-active');
+            sideNavRef.current.classList.add('sideNav-inactive');
+    
+            mainLayoutRef.current.classList.remove('main-inactive');
+            mainLayoutRef.current.classList.add('main-active');
+        }
     }
 
     const handleMenuClick = () => {
@@ -115,7 +123,7 @@ const Layout = ({ children }) => {
     return(
         <AntLayout className=' min-h-screen h-auto'>
             {contextHolder}
-            <Sider id="sideNav" width={'25%'} className='sidenav !bg-white min-h-screen h-auto py-4 px-2' >
+            <Sider ref={sideNavRef} id="sideNav" width={'25%'} className='sidenav !bg-white min-h-screen h-auto py-4 px-2' >
                 <Row className='w-full bg-white justify-start'>
                     <Row className='w-full flex justify-between px-3'>
 
@@ -151,7 +159,7 @@ const Layout = ({ children }) => {
                     </Col>
                 </Row>
             </Sider>
-            <AntLayout id='main-layout' className='p-3 sm:p-6'>
+            <AntLayout ref={mainLayoutRef} id='main-layout' className='p-3 sm:p-6'>
                 <Header
                     id='header'
                     className='flex sm:hidden'
